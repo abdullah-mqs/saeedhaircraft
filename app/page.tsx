@@ -1,69 +1,128 @@
-import Image from "next/image";
+import { Suspense } from "react";
+import Link from "next/link";
+import { FiArrowRight } from "react-icons/fi";
+import HeroSection from "../components/home/HeroSection";
+import ServiceCard from "../components/home/ServiceCard";
+import BarberCard from "../components/home/BarberCard";
+import OffersBanner from "../components/home/OffersBanner";
+import HighlightsSection from "../components/home/HighlightsSection";
+import ReviewsSection from "../components/home/ReviewsSection";
+import Reveal from "../components/common/Reveal";
+import SectionHeading from "../components/common/SectionHeading";
+import Button from "../components/common/Button";
+import { mockServices } from "../data/servicesData";
+import { mockBarbers } from "../data/barbersData";
 
-export default function Home() {
+export default function HomePage() {
+  const featuredServices = mockServices.slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <div className="min-h-screen">
+      {/* 1. Hero (Dark) */}
+      <HeroSection />
+
+      {/* 2. Offers (Dark) */}
+      <Suspense fallback={null}>
+        <Reveal direction="up">
+          <OffersBanner />
+        </Reveal>
+      </Suspense>
+
+      {/* 3. Services (Light) */}
+      <Reveal direction="up" delay={50}>
+        <section
+          data-section="light"
+          className="surface-section section-padding border-t border-section"
+        >
+          <div className="section-container">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+              <SectionHeading
+                align="left"
+                eyebrow="SIGNATURE OFFERINGS"
+                title="Explore Our"
+                titleHighlight="Services"
+              />
+              <Link href="/services" className="mt-4 md:mt-0 pb-6">
+                <Button variant="dark" size="sm" className="gap-2">
+                  <span>View All Services</span>
+                  <FiArrowRight size={16} />
+                </Button>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {featuredServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 4. Highlights (Dark) */}
+      <Reveal direction="up" delay={50}>
+        <HighlightsSection />
+      </Reveal>
+
+      {/* 5. Barbers (Light) */}
+      <Reveal direction="up" delay={50}>
+        <section
+          data-section="light"
+          className="surface-section section-padding border-t border-section"
+        >
+          <div className="section-container">
+            <SectionHeading
+              align="center"
+              eyebrow="EXPERT TEAM"
+              title="Master"
+              titleHighlight="Barbers"
+              subtitle="Years of craft mastery dedicated to your personal style and grooming satisfaction."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {mockBarbers.map((barber) => (
+                <BarberCard key={barber.id} barber={barber} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 6. Reviews (Dark) - Suspense wrapped */}
+      <Suspense fallback={null}>
+        <Reveal direction="up" delay={50}>
+          <ReviewsSection />
+        </Reveal>
+      </Suspense>
+
+      {/* 7. Location CTA (Light) */}
+      <Reveal direction="up" delay={50}>
+        <section
+          data-section="light"
+          className="surface-section section-padding border-t border-section"
+        >
+          <div className="section-container">
+            <div className="bg-surface border border-section rounded-xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-4 text-center md:text-left">
+                <h3 className="text-2xl md:text-4xl font-heading font-semibold uppercase text-section-text">
+                  Ready for a Fresh Transformation?
+                </h3>
+                <p className="text-sm text-section-text-muted max-w-lg leading-relaxed">
+                  Walk into Saeed Hair Craft or secure your preferred time slot
+                  online instantly. No waiting lines!
+                </p>
+              </div>
+
+              <Link href="/booking" className="shrink-0">
+                <Button variant="dark" size="lg" className="gap-2">
+                  <span>Book Your Slot Now</span>
+                  <FiArrowRight size={18} />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </Reveal>
     </div>
   );
 }

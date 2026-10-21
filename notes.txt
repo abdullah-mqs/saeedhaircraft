@@ -1,75 +1,68 @@
-saeedhaircraft-next/
+saeedhaircraft/
 │
-├── public/
-│   ├── background-hero.mp4
-│   └── favicon.ico
+├── app/
+│   ├── layout.tsx           (Root Layout: Navbar, Footer, etc.)
+│   ├── page.tsx             (Home Page - /)
+│   ├── globals.css          (Aapki poori CSS/Theme)
+│   ├── not-found.tsx        (404 Page)
+│   │
+│   ├── services/
+│   │   └── page.tsx         (/services)
+│   ├── booking/
+│   │   └── page.tsx         (/booking)
+│   ├── gallery/
+│   │   └── page.tsx         (/gallery)
+│   ├── contact/
+│   │   └── page.tsx         (/contact)
+│   └── reviews/
+│       └── page.tsx         (/reviews)
 │
-├── src/
+├── components/              (Naya folder banayein)
+│   ├── common/
+│   │   ├── Navbar.tsx
+│   │   ├── MobileNav.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Button.tsx
+│   │   ├── SectionHeading.tsx
+│   │   ├── StarRating.tsx
+│   │   ├── ReviewCard.tsx
+│   │   ├── Reveal.tsx
+│   │   └── AddReviewModal.tsx
 │   │
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   ├── globals.css
-│   │   ├── not-found.tsx
-│   │   │
-│   │   ├── services/
-│   │   │   └── page.tsx
-│   │   │
-│   │   ├── booking/
-│   │   │   └── page.tsx
-│   │   │
-│   │   ├── gallery/
-│   │   │   └── page.tsx
-│   │   │
-│   │   ├── contact/
-│   │   │   └── page.tsx
-│   │   │
-│   │   └── reviews/
-│   │       └── page.tsx
+│   ├── home/
+│   │   ├── HeroSection.tsx
+│   │   ├── ServiceCard.tsx
+│   │   ├── BarberCard.tsx
+│   │   ├── HighlightsSection.tsx
+│   │   ├── ReviewsSection.tsx
+│   │   └── OffersBanner.tsx
 │   │
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── Navbar.tsx
-│   │   │   ├── MobileNav.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   ├── Button.tsx
-│   │   │   ├── SectionHeading.tsx
-│   │   │   ├── StarRating.tsx
-│   │   │   ├── ReviewCard.tsx
-│   │   │   ├── Reveal.tsx
-│   │   │   └── AddReviewModal.tsx
-│   │   │
-│   │   ├── home/
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── ServiceCard.tsx
-│   │   │   ├── BarberCard.tsx
-│   │   │   ├── HighlightsSection.tsx
-│   │   │   ├── ReviewsSection.tsx
-│   │   │   └── OffersBanner.tsx
-│   │   │
-│   │   └── booking/
-│   │       ├── ServiceSelect.tsx
-│   │       ├── DatePicker.tsx
-│   │       └── UserDetails.tsx
-│   │
-│   ├── data/
-│   │   ├── servicesData.ts
-│   │   ├── barbersData.ts
-│   │   ├── highlightsData.ts
-│   │   ├── reviewsData.ts
-│   │   └── offersData.ts
-│   │
-│   ├── lib/
-│   │   ├── formatDate.ts
-│   │   └── useReveal.ts
-│   │
-│   ├── store/
-│   │   └── reviewStore.ts
-│   │
-│   └── types/
-│       └── index.ts
+│   └── booking/
+│       ├── ServiceSelect.tsx
+│       ├── DatePicker.tsx
+│       └── UserDetails.tsx
+│
+├── data/                    (Naya folder banayein)
+│   ├── servicesData.ts
+│   ├── barbersData.ts
+│   ├── highlightsData.ts
+│   ├── reviewsData.ts
+│   └── offersData.ts
+│
+├── lib/                     (Naya folder banayein)
+│   ├── formatDate.ts
+│   └── useReveal.ts
+│
+├── store/                   (Naya folder banayein - Jotai ke liye)
+│   └── reviewStore.ts
+│
+├── types/                   (Naya folder banayein)
+│   └── index.ts
+│
+├── public/                  (Videos, images yahan dalein)
+│   └── background-hero.mp4
 │
 ├── next.config.ts
 ├── package.json
 ├── tsconfig.json
-└── tailwind.config.ts
+└── ...

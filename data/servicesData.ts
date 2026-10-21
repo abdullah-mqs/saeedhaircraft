@@ -1,0 +1,55 @@
+import { ServiceItem } from "../types";
+
+export const mockServices: ServiceItem[] = [
+  {
+    id: "s-1",
+    name: "Classic Skin Fade",
+    category: "Haircut",
+    description: "A precision fade with a clean finish, styled to perfection.",
+    durationMinutes: 45,
+    pricePKR: 1500,
+    popular: true,
+  },
+  {
+    id: "s-2",
+    name: "Executive Pompadour",
+    category: "Haircut",
+    description: "Timeless volume and structure tailored to your face shape.",
+    durationMinutes: 50,
+    pricePKR: 1800,
+  },
+  {
+    id: "s-3",
+    name: "Beard Sculpt & Line",
+    category: "Beard Styling",
+    description: "Sharp lines, detailed trimming, and a hot towel finish.",
+    durationMinutes: 30,
+    pricePKR: 800,
+    popular: true,
+  },
+  {
+    id: "s-4",
+    name: "Royal Charcoal Facial",
+    category: "Facial & Skin",
+    description: "Deep cleanse with charcoal extract to detoxify and refresh.",
+    durationMinutes: 60,
+    pricePKR: 2500,
+  },
+  {
+    id: "s-5",
+    name: "Full Grooming Combo",
+    category: "Combo",
+    description: "Haircut, beard sculpt, and a refreshing facial all-in-one.",
+    durationMinutes: 120,
+    pricePKR: 4000,
+    popular: true,
+  },
+  {
+    id: "s-6",
+    name: "Keratin Treatment",
+    category: "Treatment",
+    description: "Restore shine and smoothness to dry, damaged hair.",
+    durationMinutes: 90,
+    pricePKR: 6000,
+  },
+];
