@@ -1,10 +1,13 @@
-// src/app/api/test/route.ts
 import { NextResponse } from "next/server";
+import { connection } from "next/server";
 import { sql } from "@/lib/db";
 import { r2Client } from "@/lib/r2";
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 
 export async function GET() {
+  // Opt out of prerendering for cacheComponents compatibility
+  await connection();
+
   try {
     // 1. Test Neon Database Connection
     const dbResult =
